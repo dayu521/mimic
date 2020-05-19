@@ -1,0 +1,84 @@
+name: C/C++ CI
+
+on:
+  #push:
+    #branches: [ master ]
+  #pull_request:
+    #branches: [ master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        qt_version: [5.14.2]
+        platform: [windows-latest]
+        arch: [x64]
+        config: [environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"]
+        include: 
+          - platform: windows-latest
+            arch: x64
+            qtarch: win64_msvc2017_64
+          
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with: 
+          path: ../Qt
+          key: ${{ runner.os }}-QtCache
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2.6.2
+        with:
+          version: ${{ matrix.qt_version }}
+          arch: ${{ matrix.qtarch }}
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+      - name: Checking out sources
+        uses: actions/checkout@master
+      - name: check out submodule 
+        run: |
+          git submodule update --init 
+      - name: ${{ matrix.qt_version }} - Generate Dependencies and Makefile and Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Build 
+        run: |
+          mkdir build
+          cd build
+          call "${{ matrix.config.environment_script }}"
+          qmake ../mimic.pro CONFIG+="debug_and_release" CONFIG+="use_git_submodule_loki"
+          nmake release  
+        shell: cmd
+#       - name: Unix - ${{ matrix.qt_version }} - Build 
+#         run: |
+#           cd build
+#           make -j2 release    
+#       - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Build 
+#         run: |
+#           cd build
+#           nmake release           
+      - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Running windeployqt
+        shell: cmd
+        run: |
+          cd build
+          cd release
+          del *.cpp *.h *.o *.qrc *.qm *.hpp *.obj
+          set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\
+          windeployqt ./mimic.exe --compiler-runtime --verbose 2   
+      - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Create 7z Release
+        uses: DuckSoft/create-7z-action@v1.0
+        with:
+          pathSource: ./build/release/
+          pathTarget: ./release.7z
+      - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Uploading artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ github.sha }}.Windows-${{ matrix.arch }}.qt${{ matrix.qt_version }}.7z
+          path: release.7z             
+      #- name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Upload binaries to release
+        #uses: svenstaro/upload-release-action@v1-release
+        #with:
+          #repo_token: ${{ secrets.GITHUB_TOKEN }}
+          #file: release.7z
+          #asset_name: Windows-${{ matrix.arch }}.qt${{ matrix.qt_version }}.7z
+          #tag: ${{ github.ref }}
+          #overwrite: true
