@@ -2,7 +2,7 @@
 #define FREEBOY_H
 #include<QObject>
 #include<QThread>
-#include"datasource/far_away.h"
+#include"far_away.h"
 
 class FreeBoy : public QObject
 {

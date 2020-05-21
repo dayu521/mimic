@@ -1,7 +1,7 @@
 #ifndef RBTREE_H
 #define RBTREE_H
 #include"simulator.h"
-#include"datasource/far_away.h"
+#include"far_away.h"
 
 class RbtreeModel;
 class RbData;

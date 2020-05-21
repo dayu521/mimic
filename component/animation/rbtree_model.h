@@ -1,6 +1,6 @@
 #ifndef RBTREEMODEL_H
 #define RBTREEMODEL_H
-#include"animation/abstract_animation.h"
+#include"abstract_animation.h"
 #include<QHash>
 #include<QQueue>
 #include"convenience.h"

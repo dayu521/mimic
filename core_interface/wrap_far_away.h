@@ -1,4 +1,3 @@
-
 #ifndef RBTREEDATASOURCE_H
 #define RBTREEDATASOURCE_H
 

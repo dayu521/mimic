@@ -11,7 +11,7 @@
 #include<QMenu>
 #include<QActionGroup>
 #include<QScreen>
-#include"animation/abstract_animation.h"
+#include"abstract_animation.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)

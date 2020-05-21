@@ -1,6 +1,5 @@
 #ifndef ABSTRACTANIMATION_H
 #define ABSTRACTANIMATION_H
-//#include"something.h"
 #include<vector>
 namespace Util
 {

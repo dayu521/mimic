@@ -9,8 +9,8 @@ TARGET = mimic
 INCLUDEPATH +=  common_ui/  \
                 common_ui/ui    \
                 core_interface  \
-                core_interface/datasource   \
                 component   \
+                component/simulators    \
                 utils
 
 #CONFIG += use_git_submodule_loki
@@ -43,22 +43,22 @@ msvc {
 # Input
 HEADERS += \
            common_ui/ui/flutteringwings.h \
+    component/animation/rbtree_model.h \
+    component/datasource/rbdata.h \
            component/demosim.h \
-           component/freeboy.h \
            component/hanoisim.h \
            component/mazesim.h \
            component/quicksortsim.h \
-           component/rbtree_sim.h \
-#           component/rbtreesimulation.h \
            common_ui/ui/setting.h \
+#    component/rbtreesimulation.h \
+    component/simulators/rbtree_sim.h \
+    core_interface/abstract_animation.h \
            core_interface/alarm.h \
-           core_interface/animation/abstract_animation.h \
-           core_interface/animation/rbtree_model.h \
-           core_interface/datasource/far_away.h \
-           core_interface/datasource/rbdata.h \
-           core_interface/datasource/wrap_far_away.h \
+    core_interface/far_away.h \
+    core_interface/freeboy.h \
            core_interface/simulator.h \
            common_ui/widget.h \
+    core_interface/wrap_far_away.h \
            utils/convenience.h \
            utils/loki_wrap.h \
            utils/register_type.h \
@@ -71,19 +71,19 @@ FORMS += common_ui/ui/form.ui common_ui/widget.ui
 
 SOURCES += \
            common_ui/ui/flutteringwings.cpp \
+    component/animation/rbtree_model.cpp \
+    component/datasource/rbdata.cpp \
            component/demosim.cpp \
-           component/freeboy.cpp \
            component/hanoisim.cpp \
            component/mazesim.cpp \
            component/quicksortsim.cpp \
-           component/rbtree_sim.cpp \
-#           component/rbtreesimulation.cpp \
+#    component/rbtreesimulation.cpp \
+    component/simulators/rbtree_sim.cpp \
            core_interface/alarm.cpp \
-           core_interface/animation/rbtree_model.cpp \
-           core_interface/datasource/far_away.cpp \
-           core_interface/datasource/rbdata.cpp \
-           core_interface/datasource/wrap_far_away.cpp \
+    core_interface/far_away.cpp \
+    core_interface/freeboy.cpp \
            core_interface/simulator.cpp \
+    core_interface/wrap_far_away.cpp \
            main.cpp \
            common_ui/ui/setting.cpp \
            common_ui/widget.cpp \

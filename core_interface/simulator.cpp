@@ -1,6 +1,6 @@
 #include"simulator.h"
-#include"datasource/wrap_far_away.h"
-#include"animation/abstract_animation.h"
+#include"wrap_far_away.h"
+#include"abstract_animation.h"
 
 Simulator::Simulator()
 {
