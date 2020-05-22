@@ -16,12 +16,14 @@ Rbtree::~Rbtree()
 
 void Rbtree::convertInput(const std::vector<int> &v)
 {
-    Input a={RbData::Insert,100};
+    Input a={RbData::Insert,50};
     for(int i=0;i<a.dataLength;i++)
         a.data[i]=QRandomGenerator::global()->generate()%500;
+    Input b={RbData::Insert,40};
+    for(int i=0;i<b.dataLength;i++)
+        b.data[i]=i;
     rbData->prepareWorks();
-    rbData->setInput({a});
-//    rbtreeModel->pullOriginInput({a});
+    rbData->setInput({a,b});
 }
 
 void Rbtree::prepareReplay()

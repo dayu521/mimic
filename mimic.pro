@@ -13,7 +13,7 @@ INCLUDEPATH +=  common_ui/  \
                 component/simulators    \
                 utils
 
-#CONFIG += use_git_submodule_loki
+CONFIG += use_git_submodule_loki
 #DEFINES += fuck
 
 use_git_submodule_loki{
@@ -44,6 +44,7 @@ msvc {
 HEADERS += \
            common_ui/ui/flutteringwings.h \
     component/animation/rbtree_model.h \
+    component/datasource/quick_sort_data.h \
     component/datasource/rbdata.h \
            component/demosim.h \
            component/hanoisim.h \
@@ -72,6 +73,7 @@ FORMS += common_ui/ui/form.ui common_ui/widget.ui
 SOURCES += \
            common_ui/ui/flutteringwings.cpp \
     component/animation/rbtree_model.cpp \
+    component/datasource/quick_sort_data.cpp \
     component/datasource/rbdata.cpp \
            component/demosim.cpp \
            component/hanoisim.cpp \

@@ -5,6 +5,7 @@
 #include<memory>
 #include<QMutex>
 
+//包装然后放到线程里执行
 class WrapFarAway : public FarAway
 {
 public:

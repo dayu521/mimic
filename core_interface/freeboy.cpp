@@ -1,4 +1,5 @@
 #include "freeboy.h"
+#include"far_away.h"
 
 FreeBoy::FreeBoy(QObject *parent_):QObject(parent_)
 {

@@ -104,7 +104,7 @@ private:
             remove((v.data)[i]);
     }
 
-    int yNodeNumber{0};
+    int xNodeNumber{0};
 };
 
 #endif // RBDATA_H

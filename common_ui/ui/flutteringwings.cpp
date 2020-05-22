@@ -10,7 +10,6 @@
 FlutteringWings::FlutteringWings(QWidget *parent) : QWidget(parent),
     animationTimer(new QTimer)
 {
-//    initMesgOnPix();
     for(int i=0;i<Util::numberOfobjFd;i++)
         mappingVec.push_back({{i},0});
 
@@ -30,11 +29,10 @@ FlutteringWings::FlutteringWings(QWidget *parent) : QWidget(parent),
     connect(throttleTimer,&QTimer::timeout,[this](){
         resize(fpWidth,fpHeight);
         if(!animationTimer->isActive()){
-            pix->fill();
-            if(currentFp->isRunning())
+            if(currentFp->isRunning()){
+                pix->fill();
                 currentFp->currentSnapshot();
-            else
-                initMesgOnPix(tr("切换到 %1").arg(Util::name[currentSimIndex]));
+            }
             update();
         }
     });
@@ -88,7 +86,6 @@ void FlutteringWings::autoChangeCanvasSize(Util::__width_int w_,Util::__height_i
     if(cur_<currentPixIndex){
         currentPixIndex=cur_+1;
         pix=pixContainer[cur_+1].get();
-//        resize(pix->size());
         currentFp->setPix(pix);
         return ;
     }
@@ -108,7 +105,6 @@ void FlutteringWings::autoChangeCanvasSize(Util::__width_int w_,Util::__height_i
     }
     currentPixIndex=cur_;
     pix=pixContainer[cur_].get();
-//    resize(pix->size());
     currentFp->setPix(pix);
 }
 
@@ -220,6 +216,7 @@ void FlutteringWings::preCheck()
     chosePix(currentPixIndex);
     if(fuck==UnCheck){
         fuck=Ok;
+        initMesgOnPix(tr("[%1]检查完成，可进行放映").arg(Util::name[currentSimIndex]));
         emit choseSomeOnePixFD(currentPixIndex);
     }else
         emit errorResult(fuck);

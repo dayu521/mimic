@@ -28,7 +28,7 @@ void RbData::prepareWorks()
     root=NIL;
     NIL->color=Black;
     NIL->parent=NIL->left=NIL->right=NIL;
-    yNodeNumber=0;
+    xNodeNumber=0;
 }
 
 int RbData::treeMaxNumberY()
@@ -57,7 +57,7 @@ int RbData::treeMaxNumberY()
 int RbData::treeMaxNumberX()
 {
     if(status()==FAStatus::GodJob)
-        return yNodeNumber<0?0:yNodeNumber;
+        return xNodeNumber<0?0:xNodeNumber;
     throw  std::runtime_error("cannot get value yNodeNumber");
 }
 
@@ -131,7 +131,7 @@ bool RbData::insert(int x)
         return false;
     }
     auto newNode=new Node<int>(x,tempParent,NIL,NIL);
-    yNodeNumber++;
+    xNodeNumber++;
     if(tempParent==NIL){
         root=newNode;
         output.push_back({Operate::Add,{x,tempParent->item}});
@@ -256,7 +256,7 @@ void RbData::remove(int v)
     output.push_back({Operate::Substitute,{y->item,x->item,temp1}});
     delete y;
     y=nullptr;
-    yNodeNumber--;
+    xNodeNumber--;
     if(yOriginalColor==Black)
         removeFixUpOfLostOfBlack(x);
     output.push_back({Operate::Done,{1}});

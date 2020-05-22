@@ -15,8 +15,10 @@ void WrapFarAway::doWork()
         stMutex.unlock();
         output.clear();
         try {
-            for(const auto & f :input)
+            for(const auto & f :input){
                 ms.at(f.method)();
+                index++;
+            }
         }  catch (const std::out_of_range &) {
             throw  std::runtime_error("can not execute this method.no such method");
         }

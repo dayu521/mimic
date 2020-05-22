@@ -58,7 +58,7 @@ public:
 
     virtual std::vector<Instruction> getOutput()=0;
 
-    virtual void prepareWorks();
+    virtual void prepareWorks()=0;
 
     virtual FAStatus status()
     {
@@ -66,7 +66,7 @@ public:
     }
 protected:
     using Method=std::function<void ()>;
-    virtual void registerMethod(int methodKey_,Method m_);
+    virtual void registerMethod(int methodKey_,Method m_) final;
 
 protected:
     FAStatus st{FAStatus::Uncertain};

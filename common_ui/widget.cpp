@@ -233,11 +233,9 @@ void Widget::prepare()
         ui->textBrowser->append(tr("[%1]模型数据生成完成").arg(simMappingContainer[currentobjFd].showName));
         currentSimulator->clearModelData();
         currentSimulator->produceModelData();
-//        ui->textBrowser->append(tr("[%1]模拟数据转化完成").arg(simMappingContainer[currentobjFd].showName));
-        //给模拟器更新画布pixmap
         ui->rightContainerWidget->preCheck();
+//        ui->rightContainerWidget->initMesgOnPix(tr(""));
         simMappingContainer[currentobjFd].isAnimationComplete=false;
-//        ui->textBrowser->append(tr("所有准备完成,可进行放映[%1]").arg(simMappingContainer[currentobjFd].showName));
     });
 
     connect(this,&Widget::switchClickd,[this](){

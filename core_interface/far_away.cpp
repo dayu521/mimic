@@ -5,11 +5,6 @@ FarAway::FarAway()
 
 }
 
-void FarAway::prepareWorks()
-{
-
-}
-
 FarAway::~FarAway()
 {
 
