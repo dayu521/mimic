@@ -13,12 +13,17 @@ public:
     virtual ~Rbtree();
     // Simulator interface
 public:
-    virtual void convertInput(const std::vector<int> &) override;
+    virtual void setInputData(const std::vector<int> &) override;
     virtual void prepareReplay() override;
     virtual void produceModelData() override;
 private:
     std::shared_ptr<RbtreeModel> rbtreeModel;
     std::shared_ptr<RbData> rbData;
+
+    // Simulator interface
+private:
+    virtual void afterProduceModelData() override;
 };
+
 
 #endif // RBTREE_H

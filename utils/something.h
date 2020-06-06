@@ -24,7 +24,7 @@ namespace Util {
     struct InstructionTP;
 
     //method+datalength+data....
-    struct Input;
+    struct ModelInput;
 
     template <typename InputIterator>
     inline void clearAllInput(InputIterator begin_,InputIterator end_);

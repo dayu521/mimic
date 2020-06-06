@@ -1,4 +1,5 @@
 #include "far_away.h"
+#include "mary.h"
 #include<stdexcept>
 FarAway::FarAway()
 {
@@ -7,7 +8,7 @@ FarAway::FarAway()
 
 FarAway::~FarAway()
 {
-
+    Util::clearAllInput(input.begin(),input.end());
 }
 
 void FarAway::registerMethod(int methodKey_, FarAway::Method m_)

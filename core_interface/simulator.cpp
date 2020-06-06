@@ -1,6 +1,6 @@
 #include"simulator.h"
 #include"wrap_far_away.h"
-#include"abstract_animation.h"
+#include"freeze_painter.h"
 
 Simulator::Simulator()
 {
@@ -21,7 +21,6 @@ Simulator::~Simulator()
 void Simulator::setInputData(const std::vector<int> & v_)
 {
     st=Simulator::Status::UnCertain;
-    convertInput(v_);
 }
 
 void Simulator::produceModelData()
@@ -30,7 +29,8 @@ void Simulator::produceModelData()
         st=Status::UnCertain;
         return ;
     }
-    animation->setInput(dataSource->getOutput());
+    animation->setInstructions(dataSource->getInstructions());
+    afterProduceModelData();
     animation->initModelData();
     st=Status::HasModelData;
 }

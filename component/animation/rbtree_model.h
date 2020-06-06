@@ -1,6 +1,6 @@
 #ifndef RBTREEMODEL_H
 #define RBTREEMODEL_H
-#include"abstract_animation.h"
+#include"freeze_painter.h"
 #include<QHash>
 #include<QQueue>
 #include"convenience.h"

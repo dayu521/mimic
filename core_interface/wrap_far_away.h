@@ -14,8 +14,8 @@ public:
     // FarAway interface
 public:
     virtual void doWork() final override;
-    virtual bool setInput(std::vector<Input>) override;
-    virtual std::vector<Instruction> getOutput() override;
+    virtual bool pullInputFromModel(std::vector<ModelInput>) override;
+    virtual std::vector<Instruction> getInstructions() override;
     virtual FAStatus status() override
     {
         QMutexLocker L{&stMutex};

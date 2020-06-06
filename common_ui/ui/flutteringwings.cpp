@@ -1,7 +1,7 @@
 #include "flutteringwings.h"
 #include<QPainter>
 #include<QPixmap>
-#include"abstract_animation.h"
+#include"freeze_painter.h"
 #include"simulator.h"
 #include"register_type.h"
 #include"something.h"

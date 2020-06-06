@@ -1,5 +1,6 @@
 #include<stdexcept>
 #include "wrap_far_away.h"
+#include "mary.h"
 
 WrapFarAway::WrapFarAway()
 {
@@ -16,7 +17,7 @@ void WrapFarAway::doWork()
         output.clear();
         try {
             for(const auto & f :input){
-                ms.at(f.method)();
+                ms.at(f.simulationType)();
                 index++;
             }
         }  catch (const std::out_of_range &) {
@@ -29,9 +30,9 @@ void WrapFarAway::doWork()
     stMutex.unlock();
 }
 
-bool WrapFarAway::setInput(std::vector<Input> p)
+bool WrapFarAway::pullInputFromModel(std::vector<ModelInput> p)
 {
-    if(dataMutex.tryLock()){
+    if(dataMutex.tryLock()){//下面临界区应该不会出现异常 - -!
         Util::clearAllInput(input.begin(),input.end());
         input=std::move(p);
         index=0;
@@ -44,7 +45,7 @@ bool WrapFarAway::setInput(std::vector<Input> p)
     return false;
 }
 
-std::vector<Instruction> WrapFarAway::getOutput()
+std::vector<Instruction> WrapFarAway::getInstructions()
 {
     QMutexLocker L(&dataMutex);
     return output;

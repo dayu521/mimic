@@ -11,7 +11,7 @@
 #include<QMenu>
 #include<QActionGroup>
 #include<QScreen>
-#include"abstract_animation.h"
+#include"freeze_painter.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)

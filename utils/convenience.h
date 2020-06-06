@@ -36,7 +36,7 @@ namespace Util {
     /*****************************************************/
 
     template <typename ...T>
-    std::tuple<T...> __putArray(T...arr)
+    constexpr std::tuple<T...> __putArray(T...arr)
     {
         return std::make_tuple(arr...);
     }

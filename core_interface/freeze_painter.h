@@ -10,10 +10,14 @@ namespace Util
     template <int N>
     struct InstructionTP;
 
-    struct Input;
+    struct ModelInput;
+    struct SourceOutput;
 }
 
 using Instruction=Util::InstructionTP<6>;
+using ModelInput=Util::ModelInput;
+using SourceOutput=Util::SourceOutput;
+
 class QPixmap;
 
 class FreezePainter
@@ -37,15 +41,22 @@ public:
     //清除模型数据
     virtual void clearAllModelDatas()=0;
 
-    //准备模型数据
+    //初始化模型数据
     virtual void initModelData()=0;
+
+    //设置输入模型数据
+    virtual void pullModelsFromUserInputFirst(std::vector<int>)=0;
+
+    virtual std::vector<ModelInput> generateModelInputForSource();
+
+    virtual void completeModelsFromSourceAfter(std::vector<SourceOutput>)=0;
 
     virtual std::tuple<Util::__width_int,Util::__height_int> getSize()=0;
 
 //    //改变元素大小
 //    virtual void setElementNewSize(Util::__width_int,Util::__height_int)=0;
 
-    void setInput(std::vector<Instruction> v)
+    void setInstructions(std::vector<Instruction> v)
     {
         instructions=std::move(v);
         current=0;

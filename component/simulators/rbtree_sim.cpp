@@ -14,16 +14,17 @@ Rbtree::~Rbtree()
 
 }
 
-void Rbtree::convertInput(const std::vector<int> &v)
+void Rbtree::setInputData(const std::vector<int> &v)
 {
-    Input a={RbData::Insert,50};
+    ModelInput a={RbData::Insert,50};
     for(int i=0;i<a.dataLength;i++)
         a.data[i]=QRandomGenerator::global()->generate()%500;
-    Input b={RbData::Insert,40};
+    ModelInput b={RbData::Insert,40};
     for(int i=0;i<b.dataLength;i++)
         b.data[i]=i;
+    rbtreeModel->pullModelsFromUserInputFirst();
     rbData->prepareWorks();
-    rbData->setInput({a,b});
+    rbData->pullInputFromModel({a,b});
 }
 
 void Rbtree::prepareReplay()
@@ -36,5 +37,10 @@ void Rbtree::produceModelData()
     Simulator::produceModelData();
     rbtreeModel->setXYNodeNumber(rbData->treeMaxNumberX(),rbData->treeMaxNumberY());
     st=Status::HasModelData;
+}
+
+void Rbtree::afterProduceModelData()
+{
+    animation->completeModelsFromSourceAfter(dataSource->generateModelOutputLeft());
 }
 

@@ -16,7 +16,7 @@ public:
 public:
     virtual void prepareWorks() override;
 private:
-    void insertSort(std::vector<int> &array_);
+    void insertSort(std::vector<int> &array_,int left_,int right_);
     std::vector<int>::value_type getMid(std::vector<int> & array_,int left_,int right_);
     void sortA(std::vector<int> &array_, int left_, int right_);
     void sortB(const std::vector<int> &array_, int left_, int right_);

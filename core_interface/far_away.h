@@ -14,21 +14,8 @@ namespace Util {
         bool isPartOfOther{false};
     };
 
-    struct Input
-    {
-        int method{-1};
-        int dataLength{0};
-        int * data{nullptr};
-        Input(int method_,int datal_=0):method(method_),dataLength(datal_),data(new int[datal_]){}
-    };
-
-    template <typename InputIterator>
-    inline void clearAllInput(InputIterator begin_,InputIterator end_)
-    {
-        for(;begin_!=end_;begin_++)
-            delete [] (*begin_).data;
-    }
-
+    struct ModelInput;
+    struct SourceOutput;
 }
 enum struct FAStatus:unsigned int{
     Uncertain,
@@ -39,7 +26,8 @@ enum struct FAStatus:unsigned int{
 };
 
 using Instruction=Util::InstructionTP<6>;
-using Input=Util::Input;
+using ModelInput=Util::ModelInput;
+using SourceOutput=Util::SourceOutput;
 
 class FarAway
 {
@@ -54,9 +42,11 @@ public:
 
     //method+datalength+data....
     //  1      1     N
-    virtual bool setInput(std::vector<Input>)=0;
+    virtual bool pullInputFromModel(std::vector<ModelInput>)=0;
 
-    virtual std::vector<Instruction> getOutput()=0;
+    virtual std::vector<Instruction> getInstructions()=0;
+
+    virtual std::vector<SourceOutput> modelOutputLeft()=0;
 
     virtual void prepareWorks()=0;
 
@@ -70,7 +60,7 @@ protected:
 
 protected:
     FAStatus st{FAStatus::Uncertain};
-    std::vector<Input> input{};
+    std::vector<ModelInput> input{};
     int index{0};
     std::vector<Instruction> output{};
     std::unordered_map<int,Method> ms{};

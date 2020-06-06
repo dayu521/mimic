@@ -25,9 +25,7 @@ public:
 
     virtual ~Simulator();
     //设置输入
-    virtual void setInputData(const std::vector<int> &);
-
-    virtual void convertInput(const std::vector<int> &)=0;
+    virtual void setInputData(const std::vector<int> &)=0;
 
     //生成模拟数据
     virtual void produceModelData();
@@ -53,20 +51,12 @@ public:
     {
         return dataSource;
     }
+private:
+    virtual void afterProduceModelData()=0;
 
 protected:
     std::shared_ptr<FreezePainter> animation{};
     std::shared_ptr<WrapFarAway> dataSource{};
     Status st{Status::Empty};
 };
-
-//template<typename FP,typename WF>
-//class CommonSim :public Simulator
-//{
-//public:
-//    CommonSim():Simulator(
-//                    std::make_shared<std::enable_if_t<std::is_base_of_v<FreezePainter,FP>,FP>>(),
-//                    std::make_shared<std::enable_if_t<std::is_base_of_v<WrapFarAway,WF>,WF>>()){};
-//};
-
 #endif // SIMULATOR_H

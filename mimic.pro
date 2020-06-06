@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-CONFIG +=c++17
+CONFIG +=c++2a
 QT +=widgets
 TARGET = mimic
 INCLUDEPATH +=  common_ui/  \
@@ -53,15 +53,16 @@ HEADERS += \
            common_ui/ui/setting.h \
 #    component/rbtreesimulation.h \
     component/simulators/rbtree_sim.h \
-    core_interface/abstract_animation.h \
            core_interface/alarm.h \
     core_interface/far_away.h \
     core_interface/freeboy.h \
+    core_interface/freeze_painter.h \
            core_interface/simulator.h \
            common_ui/widget.h \
     core_interface/wrap_far_away.h \
            utils/convenience.h \
            utils/loki_wrap.h \
+    utils/mary.h \
            utils/register_type.h \
            utils/something.h
 use_git_submodule_loki{
