@@ -44,11 +44,13 @@ public:
     //初始化模型数据
     virtual void initModelData()=0;
 
-    //设置输入模型数据
+    //设置输入模型数据,但某些模型要通过源产生,之后再次补全模型输入
     virtual void pullModelsFromUserInputFirst(std::vector<int>)=0;
 
-    virtual std::vector<ModelInput> generateModelInputForSource();
+    //返回模型输入作为源的输入
+    virtual std::vector<ModelInput> generateModelInputForSource()=0;
 
+    //如果源产生了输出,则补全之前的模型数据
     virtual void completeModelsFromSourceAfter(std::vector<SourceOutput>)=0;
 
     virtual std::tuple<Util::__width_int,Util::__height_int> getSize()=0;

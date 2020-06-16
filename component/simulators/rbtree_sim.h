@@ -13,7 +13,7 @@ public:
     virtual ~Rbtree();
     // Simulator interface
 public:
-    virtual void setInputData(const std::vector<int> &) override;
+    virtual void setInputData(std::vector<int>) override;
     virtual void prepareReplay() override;
     virtual void produceModelData() override;
 private:

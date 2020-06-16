@@ -18,7 +18,7 @@ Simulator::~Simulator()
 
 }
 
-void Simulator::setInputData(const std::vector<int> & v_)
+void Simulator::setInputData(std::vector<int> v_)
 {
     st=Simulator::Status::UnCertain;
 }
