@@ -20,16 +20,19 @@ Simulator::~Simulator()
 
 void Simulator::setInputData(std::vector<int> v_)
 {
+//    if(st!=Status::Empty)
+//        return;
+    animation->pullModelsFromUserInputFirst(v_);
+    dataSource->pullInputFromModel(animation->generateModelInputForSource());
     st=Simulator::Status::UnCertain;
 }
 
 void Simulator::produceModelData()
 {
     if(dataSource->status()!=FAStatus::GodJob){
-        st=Status::UnCertain;
         return ;
     }
-    animation->setInstructions(dataSource->getInstructions());
+    animation->setInstructions(dataSource->getInstructions());  //c++17强制复制消除
     afterProduceModelData();
     animation->initModelData();
     st=Status::HasModelData;

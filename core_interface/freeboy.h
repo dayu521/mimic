@@ -16,6 +16,7 @@ public slots :
     void switchD(std::shared_ptr<FarAway> p_);
 signals:
     void completed();
+    void hasError(const char *);
 private:
     std::shared_ptr<FarAway> f{};
 };

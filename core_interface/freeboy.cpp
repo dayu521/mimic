@@ -13,6 +13,10 @@ FreeBoy::~FreeBoy()
 
 void FreeBoy::run()
 {
+    if(f->status()!=FAStatus::Ready){
+        emit hasError("无数据,请准备数据");
+        return ;
+    }
     f->doWork();
     emit completed();
 }

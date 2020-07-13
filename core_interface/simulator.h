@@ -25,7 +25,7 @@ public:
 
     virtual ~Simulator();
     //设置输入
-    virtual void setInputData(std::vector<int> )=0;
+    virtual void setInputData(std::vector<int> );
 
     //生成模拟数据
     virtual void produceModelData();
