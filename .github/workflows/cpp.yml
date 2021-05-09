@@ -11,14 +11,14 @@ jobs:
   build:
     strategy:
       matrix:
-        qt_version: [5.14.2]
+        qt_version: [5.15.2]
         platform: [windows-latest]
         arch: [x64]
         config: [environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"]
         include: 
           - platform: windows-latest
             arch: x64
-            qtarch: win64_msvc2017_64
+            qtarch: win64_msvc2019_64
           
     runs-on: ${{ matrix.platform }}
 
@@ -30,7 +30,7 @@ jobs:
           path: ../Qt
           key: ${{ runner.os }}-QtCache
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2.6.2
+        uses: jurplel/install-qt-action@v2
         with:
           version: ${{ matrix.qt_version }}
           arch: ${{ matrix.qtarch }}
